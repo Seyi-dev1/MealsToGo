@@ -29,7 +29,7 @@ export default function App() {
     <>
       {/* <RestaurantsScreen /> */}
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
           <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
           <Tab.Screen name="Map" component={MapScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
