@@ -27,8 +27,8 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Text style={styles.title}>{name}</Text>
         <View style={styles.ratingContainer}>
           <View style={styles.rating}>
-            {ratingArray.map((item) => {
-              return <SvgXml xml={star} width={20} height={20} />;
+            {ratingArray.map((item, index) => {
+              return <SvgXml xml={star} width={20} height={20} key={index} />;
             })}
           </View>
           <View style={styles.otherInfo}>
@@ -52,6 +52,7 @@ export default RestaurantInfoCard;
 const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.colors.bg.primary,
+    marginBottom: theme.space[3],
   },
   cover: {
     padding: theme.sizes[1],
