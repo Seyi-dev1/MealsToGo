@@ -15,7 +15,6 @@ export const RestaurantContextProvider = ({ children }) => {
         const response = await getRestaurantsData();
         setTimeout(() => {
           setIsLoading(false);
-          console.log(response);
           setRestaurants(response);
         }, 2000);
       } catch (error) {
