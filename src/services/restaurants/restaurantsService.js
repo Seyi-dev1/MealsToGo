@@ -1,15 +1,15 @@
 import { mockImages, mocks } from "./mock";
 import camelize from "camelize";
-export const restaurantsRequest = (location = "37.7749295,-122.4194155") => {
+export const restaurantsRequest = (location) => {
   const mock = mocks[location];
   if (!mock) {
     return "not found";
   }
   return mock;
 };
-export const getRestaurantsData = async () => {
+export const getRestaurantsData = async (location) => {
   try {
-    const result = await restaurantsRequest();
+    const result = await restaurantsRequest(location);
     const data = result.results;
     const mappedResult = data.map((restaurant) => {
       restaurant.photos = restaurant.photos.map((photo) => {
@@ -17,6 +17,7 @@ export const getRestaurantsData = async () => {
       });
       return {
         ...restaurant,
+        address: restaurant.vicinity,
         isClosedTemporarily:
           restaurant.business_status === "CLOSED_TEMPORARILY",
         isOpenNow:
@@ -25,6 +26,6 @@ export const getRestaurantsData = async () => {
     });
     return camelize(mappedResult);
   } catch (error) {
-    console.log("error");
+    console.log(error);
   }
 };

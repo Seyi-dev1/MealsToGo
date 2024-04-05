@@ -17,6 +17,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
@@ -28,7 +29,14 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
         <View style={styles.ratingContainer}>
           <View style={styles.rating}>
             {ratingArray.map((item, index) => {
-              return <SvgXml xml={star} width={20} height={20} key={index} />;
+              return (
+                <SvgXml
+                  xml={star}
+                  width={20}
+                  height={20}
+                  key={`star-${placeId}-${index}`}
+                />
+              );
             })}
           </View>
           <View style={styles.otherInfo}>

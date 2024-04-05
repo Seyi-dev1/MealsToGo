@@ -9,6 +9,8 @@ import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { RestaurantContextProvider } from "./src/services/restaurants/restaurents.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
+import AppNavigator from "./src/infrastructure/navigation/app.navigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -42,36 +44,12 @@ export default function App() {
 
   return (
     <>
-      <RestaurantContextProvider>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ color, size }) => {
-                let iconName;
-
-                if (route.name === "Restaurants") {
-                  iconName = "restaurant";
-                } else if (route.name === "Settings") {
-                  iconName = "settings";
-                } else if (route.name === "Map") {
-                  iconName = "map";
-                }
-
-                // You can return any component that you like here!
-                return <Ionicons name={iconName} size={size} color={color} />;
-              },
-              tabBarActiveTintColor: "tomato",
-              tabBarInactiveTintColor: "gray",
-              headerShown: false,
-            })}
-          >
-            <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
-        <StatusBar />
-      </RestaurantContextProvider>
+      <LocationContextProvider>
+        <RestaurantContextProvider>
+          <AppNavigator />
+          <StatusBar />
+        </RestaurantContextProvider>
+      </LocationContextProvider>
     </>
   );
 }
