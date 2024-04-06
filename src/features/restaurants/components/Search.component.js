@@ -6,9 +6,9 @@ export const Search = () => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
 
-  // useEffect(() => {
-  //   search(searchKeyword);
-  // }, []);
+  useEffect(() => {
+    setSearchKeyword(keyword);
+  }, [keyword]);
   return (
     <Searchbar
       placeholder="Enter a location"

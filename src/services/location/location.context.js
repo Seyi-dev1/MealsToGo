@@ -11,7 +11,7 @@ export const LocationContextProvider = ({ children }) => {
 
   const onSearch = async (searchKeyword) => {
     setIsLoading(true);
-    setKeyword(searchKeyword);
+    setKeyword(searchKeyword.trim());
   };
 
   useEffect(() => {

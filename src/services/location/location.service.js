@@ -17,7 +17,7 @@ export const getLocationData = async (searchTerm) => {
     const data = formattedResult.results;
     const { geometry = {} } = data[0];
     const { lat, lng } = geometry.location;
-    return { lat, lng };
+    return { lat, lng, viewport: geometry.viewport };
   } catch (error) {
     console.log(error);
   }

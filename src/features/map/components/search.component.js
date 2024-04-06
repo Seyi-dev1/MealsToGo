@@ -6,10 +6,15 @@ export const Search = () => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
 
+  useEffect(() => {
+    setSearchKeyword(keyword);
+  }, [keyword]);
+
   return (
     <Searchbar
       placeholder="Enter a location"
       value={searchKeyword}
+      icon={"map"}
       onSubmitEditing={() => {
         search(searchKeyword);
       }}
