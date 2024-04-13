@@ -5,6 +5,7 @@ import { theme } from "../../../infrastructure/Theme";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import Favourite from "../../../components/favourite.component";
 
 const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -23,6 +24,9 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
   return (
     <Card elevation={5} style={styles.card}>
+      <View style={styles.favourite}>
+        <Favourite restaurant={restaurant} />
+      </View>
       <Card.Cover key={name} style={styles.cover} source={{ uri: photos[0] }} />
       <View style={styles.info}>
         <Text style={styles.title}>{name}</Text>
@@ -93,5 +97,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 15,
+  },
+  favourite: {
+    position: "absolute",
+    top: 25,
+    right: 25,
+    zIndex: 1,
   },
 });

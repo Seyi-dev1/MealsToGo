@@ -12,6 +12,7 @@ const RestaurantsNavigator = () => {
       screenOptions={{
         headerShown: false,
         animation: "slide_from_bottom",
+        gestureEnabled: true,
       }}
     >
       <RestaurantStack.Screen
